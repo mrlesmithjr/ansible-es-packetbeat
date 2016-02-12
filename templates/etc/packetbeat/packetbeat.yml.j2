@@ -63,7 +63,7 @@ protocols:
 # Multiple outputs may be used.
 output:
 {% for item in es_packetbeat_outputs %}
-  {{ item.name }}
+  {{ item.name }}:
 {%   if item.name == "elasticsearch" %}
     hosts: ["{{ item.host }}"]
     worker: {{ item.workers }}
