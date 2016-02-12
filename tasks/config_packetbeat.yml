@@ -8,3 +8,6 @@
     mode: 0644
   notify:
     - restart packetbeat
+
+- name: config_packetbeat | loading packetbeat ES Index Template
+  command: "curl -XPUT 'http://{{ es_packetbeat_elasticsearch_host }}:9200/_template/packetbeat' -d@/etc/packetbeat/packetbeat.template.json"
