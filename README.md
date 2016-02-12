@@ -1,31 +1,96 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs and configured Elastic Packetbeat (https://www.elastic.co/products/beats/packetbeat)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
+
+Vagrant
+-------
+Spin up and test  
+Spins up 3 nodes to test with following:  
+packetbeat  - client  
+es  - elasticsearch  
+logstash  - logstash server  
+````
+vagrant up
+````
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+````
+---
+# defaults file for ansible-es-packetbeat
+es_packetbeat_dashboard_dir: 'beats-dashboards-{{ es_packetbeat_version }}'
+es_packetbeat_dashboard_dl: 'http://download.elastic.co/beats/dashboards/{{ es_packetbeat_dashboard_package }}'
+es_packetbeat_dashboard_package: 'beats-dashboards-{{ es_packetbeat_version }}.zip'
+es_packetbeat_debian_dl: 'https://download.elastic.co/beats/packetbeat/{{ es_packetbeat_debian_package }}'
+es_packetbeat_debian_package: 'packetbeat_{{ es_packetbeat_version }}_amd64.deb'
+es_packetbeat_elasticsearch_host: 'es.{{ pri_domain_name }}:9200'
+es_packetbeat_interface: 'any'  #defines interface to sniff on... (any, eth0, eth1, etc.)
+es_packetbeat_outputs:
+  - name: elasticsearch
+    host: '{{ es_packetbeat_elasticsearch_host }}'
+    workers: 1
+es_packetbeat_protocols:
+  - name: dns
+    ports:
+      - 53
+    include_additionals: true  #whether or not the dns.additionals field (additional resource records) is added to messages
+    include_authorities: true  #whether or not the dns.authorities field (authority resource records) is added to messages
+    send_request: false
+    send_response: false
+  - name: http
+    ports:
+      - 80
+      - 8080
+  - name: memcache
+    ports:
+      - 11211
+  - name: mongodb
+    ports:
+      - 27017
+  - name: mysql
+    ports:
+      - 3306
+  - name: redis
+    ports:
+      - 6379
+es_packetbeat_redhat_dl: 'https://download.elastic.co/beats/packetbeat/packetbeat-{{ es_packetbeat_version }}-x86_64.rpm'
+es_packetbeat_version: '1.1.1'
+pri_domain_name: 'example.org'
+````
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+#### GitHub
+````
+- hosts: all
+  become: true
+  vars:
+  roles:
+    - role: ansible-es-packetbeat
+  tasks:
+````
+#### Galaxy
+````
+- hosts: all
+  become: true
+  vars:
+  roles:
+    - role: mrlesmithjr.packetbeat
+  tasks:
+````
 
 License
 -------
@@ -35,4 +100,7 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Larry Smith Jr.
+- @mrlesmithjr
+- http://everythingshouldbevirtual.com
+- mrlesmithjr [at] gmail.com
