@@ -22,6 +22,7 @@
     src: "/opt/{{ es_packetbeat_dashboard_package }}"
     dest: "/opt"
     copy: no
+    creates: "{{ es_packetbeat_dashboard_dir }}/load.sh"
 
 - name: config_packetbeat | loading packetbeat dashboards
-  command: "/opt/{{ es_packetbeat_dashboard_dir }}/load.sh -url {{ es_packetbeat_elasticsearch_host }}"
+  command: "/opt/{{ es_packetbeat_dashboard_dir }}/load.sh -url http://{{ es_packetbeat_elasticsearch_host }}"
