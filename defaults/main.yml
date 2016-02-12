@@ -1,0 +1,8 @@
+---
+# defaults file for ansible-es-packetbeat
+es_packetbeat_debian_dl: 'https://download.elastic.co/beats/packetbeat/{{ es_packetbeat_debian_package }}'
+es_packetbeat_debian_package: 'packetbeat_{{ es_packetbeat_version }}_amd64.deb'
+es_packetbeat_elasticsearch_host: 'es.{{ pri_domain_name }}'
+es_packetbeat_redhat_dl: 'https://download.elastic.co/beats/packetbeat/packetbeat-{{ es_packetbeat_version }}-x86_64.rpm'
+es_packetbeat_version: '1.1.1'
+pri_domain_name: 'example.org'
