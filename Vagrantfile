@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
     es.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "es"'
   end
   config.vm.define "logstash" do |logstash|
-    logstash.vm.box = "mrllogstashmithjr/trusty64"
+    logstash.vm.box = "mrlesmithjr/trusty64"
     logstash.vm.hostname = "logstash"
 
     logstash.vm.network :private_network, ip: "192.168.202.203"
