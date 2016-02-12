@@ -11,3 +11,15 @@
 
 - name: config_packetbeat | loading packetbeat ES Index Template
   command: "curl -XPUT 'http://{{ es_packetbeat_elasticsearch_host }}:9200/_template/packetbeat' -d@/etc/packetbeat/packetbeat.template.json"
+
+- name: config_packetbeat | downloading packetbeat dashboards
+  get_url:
+    url: "{{ es_packetbeat_dashboard_dl }}"
+    dest: "/opt/{{ es_packetbeat_dashboard_package }}"
+
+- name: config_packetbeat | extracting packetbeat dashboards
+  unarchive:
+    src: "/opt/{{ es_packetbeat_dashboard_package }}"
+    dest: "/opt"
+    copy: no
+    
