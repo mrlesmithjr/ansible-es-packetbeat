@@ -10,7 +10,7 @@
     - restart packetbeat
 
 - name: config_packetbeat | loading packetbeat ES Index Template
-  command: "curl -XPUT 'http://{{ es_packetbeat_elasticsearch_host }}:9200/_template/packetbeat' -d@/etc/packetbeat/packetbeat.template.json"
+  command: "curl -XPUT 'http://{{ es_packetbeat_elasticsearch_host }}/_template/packetbeat' -d@/etc/packetbeat/packetbeat.template.json"
 
 - name: config_packetbeat | downloading packetbeat dashboards
   get_url:
@@ -22,4 +22,6 @@
     src: "/opt/{{ es_packetbeat_dashboard_package }}"
     dest: "/opt"
     copy: no
-    
+
+- name: config_packetbeat | loading packetbeat dashboards
+  command: "/opt/{{ es_packetbeat_dashboard_dir }}/load.sh -url {{ es_packetbeat_elasticsearch_host }}"
