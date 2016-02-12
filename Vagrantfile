@@ -13,8 +13,33 @@ Vagrant.configure(2) do |config|
     packetbeat.vm.network :private_network, ip: "192.168.202.201"
 
     packetbeat.vm.provider "virtualbox" do |vb|
+     vb.memory = "512"
+    end
+    packetbeat.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "packetbeat"'
+  end
+  config.vm.define "es" do |es|
+    es.vm.box = "mrlesmithjr/trusty64"
+    es.vm.hostname = "es"
+
+    es.vm.network :private_network, ip: "192.168.202.202"
+    es.vm.network :forwarded_port, guest: 5601, host: 5601
+    es.vm.network :forwarded_port, guest: 9200, host: 9200
+
+    es.vm.provider "virtualbox" do |vb|
      vb.memory = "1024"
     end
+    es.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "es"'
+  end
+  config.vm.define "logstash" do |logstash|
+    logstash.vm.box = "mrllogstashmithjr/trusty64"
+    logstash.vm.hostname = "logstash"
+
+    logstash.vm.network :private_network, ip: "192.168.202.203"
+
+    logstash.vm.provider "virtualbox" do |vb|
+     vb.memory = "1024"
+    end
+    logstash.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "logstash"'
   end
   config.vm.provision :shell, path: "provision.sh"
 end
