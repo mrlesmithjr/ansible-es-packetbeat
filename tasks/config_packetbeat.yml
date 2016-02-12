@@ -25,4 +25,6 @@
     creates: "{{ es_packetbeat_dashboard_dir }}/load.sh"
 
 - name: config_packetbeat | loading packetbeat dashboards
-  shell: "/opt/{{ es_packetbeat_dashboard_dir }}/load.sh -url http://{{ es_packetbeat_elasticsearch_host }}"
+  shell: "./load.sh -url http://{{ es_packetbeat_elasticsearch_host }}"
+  args:
+    chdir: "/opt/{{ es_packetbeat_dashboard_dir }}"
