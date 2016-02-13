@@ -5,6 +5,7 @@
     state: present
   with_items:
     - libpcap0.8
+    - unzip
 
 - name: debian | downloading packetbeat
   get_url:
