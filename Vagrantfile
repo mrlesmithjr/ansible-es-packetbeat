@@ -6,17 +6,6 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  config.vm.define "packetbeat" do |packetbeat|
-    packetbeat.vm.box = "mrlesmithjr/trusty64"
-    packetbeat.vm.hostname = "packetbeat"
-
-    packetbeat.vm.network :private_network, ip: "192.168.202.201"
-
-    packetbeat.vm.provider "virtualbox" do |vb|
-     vb.memory = "512"
-    end
-    packetbeat.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "packetbeat"'
-  end
   config.vm.define "es" do |es|
     es.vm.box = "mrlesmithjr/trusty64"
     es.vm.hostname = "es"
@@ -40,6 +29,17 @@ Vagrant.configure(2) do |config|
      vb.memory = "1024"
     end
     logstash.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "logstash"'
+  end
+  config.vm.define "packetbeat" do |packetbeat|
+    packetbeat.vm.box = "mrlesmithjr/trusty64"
+    packetbeat.vm.hostname = "packetbeat"
+
+    packetbeat.vm.network :private_network, ip: "192.168.202.201"
+
+    packetbeat.vm.provider "virtualbox" do |vb|
+     vb.memory = "512"
+    end
+    packetbeat.vm.provision :shell, inline: 'ansible-playbook -i /vagrant/hosts -c local /vagrant/playbook.yml --limit "packetbeat"'
   end
   config.vm.provision :shell, path: "provision.sh"
 end
