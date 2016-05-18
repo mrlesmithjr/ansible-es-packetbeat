@@ -1,6 +1,6 @@
 ---
 # defaults file for ansible-es-packetbeat
-es_packetbeat_dashboard_dir: 'beats-dashboards-{{ es_packetbeat_version }}'
+es_packetbeat_dashboard_dir: '/opt/beats-dashboards-{{ es_packetbeat_version }}'
 es_packetbeat_dashboard_dl: 'http://download.elastic.co/beats/dashboards/{{ es_packetbeat_dashboard_package }}'
 es_packetbeat_dashboard_package: 'beats-dashboards-{{ es_packetbeat_version }}.zip'
 es_packetbeat_debian_package: 'packetbeat_{{ es_packetbeat_version }}_amd64.deb'
