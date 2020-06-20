@@ -1,4 +1,5 @@
 ---
+# defaults file for ansible-es-packetbeat
 es_packetbeat:
   # The location for configuration files.
   config_dir: /etc/packetbeat
@@ -81,28 +82,22 @@ es_packetbeat_configuration:
     # indexed.
     # Default: 1000
     #max_body_length: 1000
-
     # Hide the header fields in header frames.
     # Default: false
     #parse_headers: false
-
     # Hide the additional arguments of method frames.
     # Default: false
     #parse_arguments: false
-
     # Hide all methods relative to connection negotiation between server and
     # client.
     # Default: true
     #hide_connection_information: true
-
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -114,23 +109,18 @@ es_packetbeat_configuration:
     # If this option is enabled, the raw message of the request (`cassandra_request` field)
     # is included in published events. The default is true.
     #send_request: true
-
     # If this option is enabled, the raw message of the response (`cassandra_request.request_headers` field)
     # is included in published events. The default is true. enable `send_request` first before enable this option.
     #send_request_header: true
-
     # If this option is enabled, the raw message of the response (`cassandra_response` field)
     # is included in published events. The default is true.
     #send_response: true
-
     # If this option is enabled, the raw message of the response (`cassandra_response.response_headers` field)
     # is included in published events. The default is true. enable `send_response` first before enable this option.
     #send_response_header: true
-
     # Configures the default compression algorithm being used to uncompress compressed frames by name. Currently only `snappy` is can be configured.
     # By default no compressor is configured.
     #compressor: "snappy"
-
     # This option indicates which Operator/Operators will be ignored.
     #ignored_ops: ["SUPPORTED","OPTIONS"]
 
@@ -159,7 +149,6 @@ es_packetbeat_configuration:
     # Default: false
     # send_request:  true
     # send_response: true
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -179,40 +168,31 @@ es_packetbeat_configuration:
     # sensitive information.
     # Only query parameters and top level form parameters are replaced.
     # hide_keywords: ['pass', 'password', 'passwd']
-
     # A list of header names to capture and send to Elasticsearch. These headers
     # are placed under the `headers` dictionary in the resulting JSON.
     #send_headers: false
-
     # Instead of sending a white list of headers to Elasticsearch, you can send
     # all headers by setting this option to true. The default is false.
     #send_all_headers: false
-
     # The list of content types for which Packetbeat includes the full HTTP
     # payload in the response field.
     #include_body_for: []
-
     # If the Cookie or Set-Cookie headers are sent, this option controls whether
     # they are split into individual values.
     #split_cookie: false
-
     # The header field to extract the real IP from. This setting is useful when
     # you want to capture traffic behind a reverse proxy, but you want to get the
     # geo-location information.
     #real_ip_header:
-
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
-
     # Maximum message size. If an HTTP message is larger than this, it will
     # be trimmed to this size. Default is 10 MB.
     #max_message_size: 10485760
@@ -230,7 +210,6 @@ es_packetbeat_configuration:
     # Note: All unknown commands MUST not contain any data parts!
     # Default: false
     # parseunknown: true
-
     # Update the maxvalue option to store the values - base64 encoded - in the
     # json output.
     # possible values:
@@ -239,13 +218,11 @@ es_packetbeat_configuration:
     #    maxvalue: N   # store up to N values
     # Default: 0
     # maxvalues: -1
-
     # Use maxbytespervalue to limit the number of bytes to be copied per value element.
     # Note: Values will be base64 encoded, so actual size in json document
     #       will be 4 times maxbytespervalue.
     # Default: unlimited
     # maxbytespervalue: 100
-
     # UDP transaction timeout in milliseconds.
     # Note: Quiet messages in UDP binary protocol will get response only in error case.
     #       The memcached analyzer will wait for udptransactiontimeout milliseconds
@@ -253,15 +230,12 @@ es_packetbeat_configuration:
     #       error response will not have to wait for the timeout.
     # Default: 200
     # udptransactiontimeout: 1000
-
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -277,11 +251,9 @@ es_packetbeat_configuration:
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -297,11 +269,9 @@ es_packetbeat_configuration:
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -317,11 +287,9 @@ es_packetbeat_configuration:
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -338,45 +306,35 @@ es_packetbeat_configuration:
     # for TSocket, which is the default Thrift transport, and framed for the
     # TFramed Thrift transport. The default is socket.
     #transport_type: socket
-
     # The Thrift protocol type. Currently the only accepted value is binary for
     # the TBinary protocol, which is the default Thrift protocol.
     #protocol_type: binary
-
     # The Thrift interface description language (IDL) files for the service that
     # Packetbeat is monitoring.  Providing the IDL enables Packetbeat to include
     # parameter and exception names.
     #idl_files: []
-
     # The maximum length for strings in parameters or return values. If a string
     # is longer than this value, the string is automatically truncated to this
     # length.
     #string_max_size: 200
-
     # The maximum number of elements in a Thrift list, set, map, or structure.
     #collection_max_size: 15
-
     # If this option is set to false, Packetbeat decodes the method name from the
     # reply and simply skips the rest of the response message.
     #capture_reply: true
-
     # If this option is set to true, Packetbeat replaces all strings found in
     # method parameters, return codes, or exception structures with the "*"
     # string.
     #obfuscate_strings: false
-
     # The maximum number of fields that a structure can have before Packetbeat
     # ignores the whole transaction.
     #drop_after_n_struct_fields: 500
-
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -389,24 +347,19 @@ es_packetbeat_configuration:
     # the MongoDB protocol by commenting out the list of ports.
     ports: [27017]
 
-
     # The maximum number of documents from the response to index in the `response`
     # field. The default is 10.
     #max_docs: 10
-
     # The maximum number of characters in a single document indexed in the
     # `response` field. The default is 5000. You can set this to 0 to index an
     # unlimited number of characters per document.
     #max_doc_length: 5000
-
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -422,11 +375,9 @@ es_packetbeat_configuration:
     # If this option is enabled, the raw message of the request (`request` field)
     # is sent to Elasticsearch. The default is false.
     #send_request: false
-
     # If this option is enabled, the raw message of the response (`response`
     # field) is sent to Elasticsearch. The default is false.
     #send_response: false
-
     # Transaction timeout. Expired transactions will no longer be correlated to
     # incoming responses, but sent to Elasticsearch immediately.
     #transaction_timeout: 10s
@@ -462,7 +413,6 @@ es_packetbeat_configuration:
   # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
   # This requires a Kibana endpoint configuration.
   setup.kibana:
-
     # Kibana Host
     # Scheme and port can be left out and will be set to the default (http and 5601)
     # In case you specify and additional path, the scheme is required: http://localhost:5601/path
@@ -490,23 +440,18 @@ es_packetbeat_configuration:
     #password: "changeme"
 
   #output.logstash:
-    # The Logstash hosts
-    #hosts: ["localhost:5044"]
-
-    # Optional SSL. By default is off.
-    # List of root certificates for HTTPS server verifications
-    #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
-
-    # Certificate for SSL client authentication
-    #ssl.certificate: "/etc/pki/client/cert.pem"
-
-    # Client Certificate Key
-    #ssl.key: "/etc/pki/client/cert.key"
-
+  # The Logstash hosts
+  #hosts: ["localhost:5044"]
+  # Optional SSL. By default is off.
+  # List of root certificates for HTTPS server verifications
+  #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+  # Certificate for SSL client authentication
+  #ssl.certificate: "/etc/pki/client/cert.pem"
+  # Client Certificate Key
+  #ssl.key: "/etc/pki/client/cert.key"
   # Sets log level. The default log level is info.
   # Available log levels are: critical, error, warning, info, debug
   #logging.level: debug
-
   # At debug level, you can selectively enable logging only for some components.
   # To enable all selectors use ["*"]. Examples of other selectors are "beat",
   # "publish", "service".
