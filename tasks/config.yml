@@ -1,0 +1,11 @@
+---
+- name: config | configuring packetbeat
+  template:
+    src: etc/packetbeat/packetbeat.yml.j2
+    dest: /etc/packetbeat/packetbeat.yml
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify:
+    - restart packetbeat
+  become: true

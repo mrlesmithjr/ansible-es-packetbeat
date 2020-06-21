@@ -1,30 +1,36 @@
 ---
 - name: debian | Installing Pre-Reqs
   apt:
-    name: "{{ item }}"
+    name:
+      - apt-transport-https
+      - gnupg
+      - libpcap0.8
     state: present
   become: true
-  with_items:
-    - apt-transport-https
-    - libpcap0.8
+  register: result
+  until: result is successful
 
-# Adding Elastic Repo Key
-- name: debian | Adding Elasticsearch Repo Key
+- name: debian | Copying Elasticsearch GPG Key
+  copy:
+    src: GPG-KEY-elasticsearch
+    dest: /tmp/GPG-KEY-elasticsearch
+
+- name: debian | Adding Elasticsearch GPG Key
   apt_key:
-    url: "{{ es_packetbeat_repo_key }}"
+    file: /tmp/GPG-KEY-elasticsearch
     state: present
   become: true
 
-# Adding Packetbeat Repo
-- name: debian | Adding Packetbeat Repo
+- name: debian | adding packetbeat repo
   apt_repository:
-    repo: "deb {{ es_packetbeat_repo_url }}/packages/{{ es_packetbeat['major_version'] }}/apt stable main"
+    repo: "{{ 'deb '+es_packetbeat_repo_url+'/'+es_packetbeat_major_ver+'/apt stable main' }}"
     state: present
   become: true
 
-# Installing Packetbeat version defined by es_packetbeat['minor_version']
-- name: debian | Installing Packetbeat {{ es_packetbeat['minor_version'] }}
+- name: debian | Installing packetbeat {{ es_packetbeat_minor_version }}
   apt:
-    name: "packetbeat={{ es_packetbeat['minor_version'] }}"
+    name: "{{ 'packetbeat='+es_packetbeat_minor_version|string }}"
     state: present
   become: true
+  register: result
+  until: result is successful

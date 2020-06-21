@@ -1,40 +1,37 @@
 ---
 - name: redhat | Installing Pre-Reqs
-  yum:
-    name: "{{ item }}"
+  package:
+    name:
+      - libpcap
     state: present
   become: true
-  with_items:
-    - libpcap
-  when: ansible_distribution != "Fedora"
 
-- name: redhat | Adding Packetbeat Repo Key
+- name: redhat | Copying Elasticsearch GPG Key
+  copy:
+    src: GPG-KEY-elasticsearch
+    dest: /tmp/GPG-KEY-elasticsearch
+
+- name: redhat | Adding Elasticsearch GPG Key
   rpm_key:
-    key: "{{ es_packetbeat_repo_key }}"
+    key: /tmp/GPG-KEY-elasticsearch
     state: present
   become: true
 
-- name: redhat | Adding Packetbeat Repo
+- name: redhat | Adding packetbeat Repo
   yum_repository:
-    baseurl: "{{ es_packetbeat_repo_url }}/packages/{{ es_packetbeat['major_version'] }}/yum"
-    description: "Packetbeat repository for {{ es_packetbeat['major_version'] }} packages"
+    baseurl: "{{ es_packetbeat_repo_url+'/'+es_packetbeat_major_ver+'/yum' }}"
+    description: "packetbeat repository for {{ es_packetbeat_major_ver }} packages"
     enabled: true
     gpgcheck: true
     gpgkey: "{{ es_packetbeat_repo_key }}"
-    name: "packetbeat-{{ es_packetbeat['major_version'] }}"
+    name: "{{ 'packetbeat-'+es_packetbeat_major_ver }}"
     state: present
   become: true
 
-- name: redhat | Installing Packetbeat
-  yum:
-    name: "packetbeat-{{ es_packetbeat['minor_version'] }}"
+- name: redhat | Installing packetbeat
+  package:
+    name: "{{ 'packetbeat-'+es_packetbeat_minor_version|string }}"
     state: present
   become: true
-  when: ansible_distribution != "Fedora"
-
-- name: redhat | Installing Packetbeat
-  dnf:
-    name: "packetbeat-{{ es_packetbeat['minor_version'] }}"
-    state: present
-  become: true
-  when: ansible_distribution == "Fedora"
+  register: result
+  until: result is successful
