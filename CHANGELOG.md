@@ -1,3 +1,9 @@
+commit e4b78cbb1fe6c655f23c1b7a1a2dfb0f35216f12
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Sat Jun 20 22:39:17 2020 -0400
+
+    Fixed indent of additional configurations
+
 commit 7e550f1e9001a938cc582b3be50a4496b9191395
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Sat Jun 20 22:31:09 2020 -0400

@@ -137,7 +137,7 @@ es_packetbeat_configuration:
     # dashboards from the local kibana directory in the home path of the
     # Packetbeat installation
     dashboards:
-      enabled: true
+      enabled: false
 
     template:
       # Set to false to disable template loading. If set this to false,
