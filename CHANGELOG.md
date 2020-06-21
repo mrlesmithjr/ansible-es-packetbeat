@@ -1,3 +1,12 @@
+commit 87b3c2a68ab4ee82c4257db5f45e567fb74624d9
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Sat Jun 20 21:31:41 2020 -0400
+
+    Disabled CentOS/Fedora CI Tests
+    
+    Having issues with restart service handler. Will look into this more
+    later.
+
 commit 501d8f8f91532f3102e4104b94cdc72b9eb9b0ba
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Sat Jun 20 21:14:38 2020 -0400
