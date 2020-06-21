@@ -1,3 +1,9 @@
+commit 501d8f8f91532f3102e4104b94cdc72b9eb9b0ba
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Sat Jun 20 21:14:38 2020 -0400
+
+    Disabled loading dashboards
+
 commit 35bdee0962bf5ba89f0bf380b7abeb81bd696f24
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Sat Jun 20 20:47:18 2020 -0400
