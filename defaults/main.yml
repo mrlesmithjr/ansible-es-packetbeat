@@ -9,23 +9,15 @@ es_packetbeat_config: false
 # The config here will be automatically converted to proper YAML for packetbeat
 # /etc/packetbeat/packetbeat.yml using the Jinja2 template.
 es_packetbeat_configuration:
-  # Select the network interface to sniff the data. You can use the "any"
-  # keyword to sniff on all connected interfaces.
+  logging:
+    level: info
+
   packetbeat:
     ignore_outgoing: false
+    # Select the network interface to sniff the data. You can use the "any"
+    # keyword to sniff on all connected interfaces.
     interfaces:
       device: any
-
-    logging:
-      level: info
-
-    # You can use processors to filter and enhance data before sending it to the
-    # configured output
-    processors:
-      - add_cloud_metadata: ~
-      - add_docker_metadata: ~
-      - add_host_metadata: ~
-      - add_kubernetes_metadata: ~
 
     procs:
       # When the process monitor is enabled, it will enrich all the events
@@ -131,6 +123,14 @@ es_packetbeat_configuration:
       # If set to true and multiple hosts or workers are configured, the output
       # plugin load balances published events onto all Redis hosts.
       loadbalance: true
+
+  # You can use processors to filter and enhance data before sending it to the
+  # configured output
+  processors:
+    - add_cloud_metadata: ~
+    - add_docker_metadata: ~
+    - add_host_metadata: ~
+    - add_kubernetes_metadata: ~
 
   setup:
     # If this option is set to true, Packetbeat loads the sample Kibana

@@ -1,3 +1,12 @@
+commit 7e550f1e9001a938cc582b3be50a4496b9191395
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Sat Jun 20 22:31:09 2020 -0400
+
+    Fixed issue with config
+    
+    - output and setup were indented under packetbeat
+    - Enabled CentOS CI testing
+
 commit 87b3c2a68ab4ee82c4257db5f45e567fb74624d9
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Sat Jun 20 21:31:41 2020 -0400
