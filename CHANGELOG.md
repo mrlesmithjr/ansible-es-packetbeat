@@ -1,3 +1,13 @@
+commit 35bdee0962bf5ba89f0bf380b7abeb81bd696f24
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Sat Jun 20 20:47:18 2020 -0400
+
+    Refactored all tasks and default vars
+    
+    - Fixed linting issue
+    - Updated default vars to be current
+    - Deleted old reference packetbeat.full.yml
+
 commit 02654e895b1f9a331f0111108a02a3b3a10b6ec5
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Sat Jun 20 19:20:44 2020 -0400
