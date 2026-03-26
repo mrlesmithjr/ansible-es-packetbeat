@@ -1,7 +1,9 @@
 > [!CAUTION]
 > **This project is archived and no longer maintained.**
 > Archived: 2026-03-26
-> Reason: Elastic ecosystem has evolved; use official Elastic tooling# ansible-es-packetbeat
+> Reason: Elastic ecosystem has evolved; use official Elastic tooling
+
+# ansible-es-packetbeat
 
 Ansible role to install/configure Elastic PacketBeat
 
